@@ -7,7 +7,7 @@ Matthew S Rich, Celia Payen, Alan F Rubin, Giang Ong, Maitreya J Dunham, and Sta
 
 Included in this repository are:
 
-enrich/ -- this folder contains scripts from the Enrich software package which were used to all initial analyses of barcode counts. These scripts are preliminary versions of the Enrich software published in [1], which have more complex normalization and regression functionality.
+`enrich/` -- this folder contains scripts from the Enrich software package which were used to all initial analyses of barcode counts. These scripts are preliminary versions of the Enrich software published in [1], which have more complex normalization and regression functionality.
 
 plot_heatmap_enrich2.py -- this script takes output of enrich's barcode frequency analysis and creates the plots found in the Figure 2.
 
