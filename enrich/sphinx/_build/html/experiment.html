@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. experiment — Class for comparing multiple selections &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="next" title="5. Other modules" href="other_overview.html" />
+    <link rel="prev" title="3. selection — Class for analyzing a selection timeseries" href="selection.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="other_overview.html" title="5. Other modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="selection.html" title="3. selection — Class for analyzing a selection timeseries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-experiment">
+<span id="experiment-class-for-comparing-multiple-selections"></span><h1>4. <a class="reference internal" href="#module-experiment" title="experiment: Class for comparing multiple selections."><tt class="xref py py-mod docutils literal"><span class="pre">experiment</span></tt></a> &#8212; Class for comparing multiple selections<a class="headerlink" href="#module-experiment" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-experiment" title="experiment: Class for comparing multiple selections."><tt class="xref py py-mod docutils literal"><span class="pre">experiment</span></tt></a> module contains the class definition for the <a class="reference internal" href="#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> class, used for comparing multiple <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> objects. Typically, one <a class="reference internal" href="#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> will be created to perform all analysis for a single run of the <a class="reference external" href="index.html">Enrich2</a> pipeline.</p>
+<div class="section" id="configuration-options">
+<h2>4.1. Configuration options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>&#8216;name&#8217;</strong>  - <em>required</em></dt>
+<dd>The name of this entity. This used for output directory names, and is included in every error message and log message. Names should be unique within a single analysis, but this is not enforced.</dd>
+<dt><strong>&#8216;output directory&#8217;</strong></dt>
+<dd><p class="first">Sets the base output directory for the analysis. Output files and directories will be created in subdirectories at this location. It will be created if it doesn&#8217;t exist.</p>
+<p>If desired, the output directory can be set for each entity separately. If no &#8216;output directory&#8217; is included in the config, the entity will use the parent&#8217;s setting.</p>
+<p class="last">This setting is required for the top level entity (usually an <a class="reference internal" href="#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>) in each analysis.</p>
+</dd>
+<dt><strong>&#8216;conditions&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">List of experimental conditions, each having the following format.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;label&#8217;</strong> - <em>required</em></dt>
+<dd>Label for the condition. Must be unique and alphanumeric.</dd>
+<dt><strong>&#8216;selection&#8217;</strong> - <em>required</em></dt>
+<dd>List of <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> config objects for selection performed under this condition.</dd>
+<dt><strong>&#8216;control&#8217;</strong></dt>
+<dd>If this is <tt class="docutils literal"><span class="pre">True</span></tt>, this condition will be treated as the control for normalization purposes. Only one control condition may be specified.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;normalize wt&#8217;</strong></dt>
+<dd>If this is <tt class="docutils literal"><span class="pre">True</span></tt>, normalize all scores or ratios using the wild type score or ratio as neutral.</dd>
+</dl>
+</div>
+<div class="section" id="experiment-class">
+<h2>4.2. <a class="reference internal" href="#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> class<a class="headerlink" href="#experiment-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="experiment.Experiment">
+<em class="property">class </em><tt class="descclassname">experiment.</tt><tt class="descname">Experiment</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#experiment.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for a coordinating multiple <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> 
+objects. Creating an 
+<a class="reference internal" href="#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a> requires a valid <em>config</em> object, 
+usually from a <tt class="docutils literal"><span class="pre">.json</span></tt> configuration file.</p>
+<dl class="method">
+<dt id="experiment.Experiment.calc_variation">
+<tt class="descname">calc_variation</tt><big>(</big><big>)</big><a class="headerlink" href="#experiment.Experiment.calc_variation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the coefficient of variation for each variant&#8217;s scores or ratios in each condition.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="experiment.Experiment.calculate">
+<tt class="descname">calculate</tt><big>(</big><big>)</big><a class="headerlink" href="#experiment.Experiment.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate scores for all <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="experiment.Experiment.filter_data">
+<tt class="descname">filter_data</tt><big>(</big><big>)</big><a class="headerlink" href="#experiment.Experiment.filter_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the filtering functions to the data, based on the filter 
+options present in the configuration object. Filtering is performed 
+using the appropriate apply function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="experiment.Experiment.selection_list">
+<tt class="descname">selection_list</tt><big>(</big><big>)</big><a class="headerlink" href="#experiment.Experiment.selection_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> objects as a list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="experiment.Experiment.use_scores">
+<tt class="descname">use_scores</tt><big>(</big><big>)</big><a class="headerlink" href="#experiment.Experiment.use_scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <tt class="docutils literal"><span class="pre">True</span></tt> if scores (slopes) are used, else <tt class="docutils literal"><span class="pre">False</span></tt> (use ratios).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="experiment-apply-functions">
+<h2>4.3. <a class="reference internal" href="#module-experiment" title="experiment: Class for comparing multiple selections."><tt class="xref py py-mod docutils literal"><span class="pre">experiment</span></tt></a> apply functions<a class="headerlink" href="#experiment-apply-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="experiment.condition_cv_apply_fn">
+<tt class="descclassname">experiment.</tt><tt class="descname">condition_cv_apply_fn</tt><big>(</big><em>row</em>, <em>condition</em>, <em>use_scores</em><big>)</big><a class="headerlink" href="#experiment.condition_cv_apply_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="(in pandas v0.13.1)"><tt class="xref py py-meth docutils literal"><span class="pre">pandas.DataFrame.apply()</span></tt></a> function for calculating the 
+coefficient of variation for a variant&#8217;s score (or ratio) in the 
+condition.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. <tt class="docutils literal"><span class="pre">experiment</span></tt> &#8212; Class for comparing multiple selections</a><ul>
+<li><a class="reference internal" href="#configuration-options">4.1. Configuration options</a></li>
+<li><a class="reference internal" href="#experiment-class">4.2. <tt class="docutils literal"><span class="pre">Experiment</span></tt> class</a></li>
+<li><a class="reference internal" href="#experiment-apply-functions">4.3. <tt class="docutils literal"><span class="pre">experiment</span></tt> apply functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="selection.html"
+                        title="previous chapter">3. <tt class="docutils literal docutils literal"><span class="pre">selection</span></tt> &#8212; Class for analyzing a selection timeseries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="other_overview.html"
+                        title="next chapter">5. Other modules</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/experiment.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="other_overview.html" title="5. Other modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="selection.html" title="3. selection — Class for analyzing a selection timeseries"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

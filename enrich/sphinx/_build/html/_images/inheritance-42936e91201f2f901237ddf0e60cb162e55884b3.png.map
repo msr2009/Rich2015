@@ -1,0 +1,9 @@
+<map id="inheritance38b1bcbb91" name="inheritance38b1bcbb91">
+<area shape="rect" id="node1" href="barcode.html#seqlib.barcode.BarcodeSeqLib" title="Class for count data from barcoded sequencing libraries. Designed for " alt="" coords="281,5,391,33"/>
+<area shape="rect" id="node4" href="barcodevariant.html#seqlib.barcodevariant.BarcodeVariantSeqLib" title="Class for counting variant data from barcoded sequencing libraries. " alt="" coords="441,5,591,33"/>
+<area shape="rect" id="node2" href="seqlib.html#seqlib.seqlib.SeqLib" title="Abstract class for handling count data from a single sequencing library." alt="" coords="160,30,232,58"/>
+<area shape="rect" id="node5" href="variant.html#seqlib.variant.VariantSeqLib" title="Abstract :py:class:`SeqLib` class for for Enrich libraries containing variants. Implements core functionality for assessing variants, either coding" alt="" coords="285,55,387,83"/>
+<area shape="rect" id="node8" href="basic.html#seqlib.basic.BasicSeqLib" title="Class for count data from sequencing libraries with a single read for " alt="" coords="469,55,563,83"/>
+<area shape="rect" id="node11" href="overlap.html#seqlib.overlap.OverlapSeqLib" title="Class for count data from sequencing libraries with overlapping paired&#45;end " alt="" coords="463,106,569,134"/>
+<area shape="rect" id="node10" href="datacontainer.html#datacontainer.DataContainer" title="Abstract class for all data&#45;containing classes " alt="" coords="5,30,112,58"/>
+</map>

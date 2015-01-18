@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.2. variant — Abstract class for sequencing libraries with variants &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="2. Sequencing library modules" href="seqlib_overview.html" />
+    <link rel="next" title="2.3. basic — Single-read sequencing library" href="basic.html" />
+    <link rel="prev" title="2.1. seqlib — Abstract class for sequencing libraries" href="seqlib.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="basic.html" title="2.3. basic — Single-read sequencing library"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="seqlib.html" title="2.1. seqlib — Abstract class for sequencing libraries"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" accesskey="U">2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-seqlib.variant">
+<span id="variant-abstract-class-for-sequencing-libraries-with-variants"></span><h1>2.2. <a class="reference internal" href="#module-seqlib.variant" title="seqlib.variant: Abstract class for sequencing librariesw ith variants."><tt class="xref py py-mod docutils literal"><span class="pre">variant</span></tt></a> &#8212; Abstract class for sequencing libraries with variants<a class="headerlink" href="#module-seqlib.variant" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-seqlib.variant" title="seqlib.variant: Abstract class for sequencing librariesw ith variants."><tt class="xref py py-mod docutils literal"><span class="pre">variant</span></tt></a> module contains the class definition for the abstract class <a class="reference internal" href="#seqlib.variant.VariantSeqLib" title="seqlib.variant.VariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">VariantSeqLib</span></tt></a>, the base class for sequencing library data with an associated wild type sequence.</p>
+<div class="section" id="variantseqlib-class">
+<h2>2.2.1. <a class="reference internal" href="#seqlib.variant.VariantSeqLib" title="seqlib.variant.VariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">VariantSeqLib</span></tt></a> class<a class="headerlink" href="#variantseqlib-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.variant.VariantSeqLib">
+<em class="property">class </em><tt class="descclassname">seqlib.variant.</tt><tt class="descname">VariantSeqLib</tt><big>(</big><em>config</em>, <em>parent=True</em><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract <tt class="xref py py-class docutils literal"><span class="pre">SeqLib</span></tt> class for for Enrich libraries containing variants. Implements core functionality for assessing variants, either coding
+or noncoding. Subclasess must evaluate the variant DNA sequences that are being counted.</p>
+<dl class="method">
+<dt id="seqlib.variant.VariantSeqLib.align_variant">
+<tt class="descname">align_variant</tt><big>(</big><em>variant_dna</em><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib.align_variant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the local <a class="reference internal" href="aligner.html#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> instance to align the <em>variant_dna</em> to the 
+wild type sequence. Returns a list of HGVS variant strings.</p>
+<p>Aligned variants are stored in a local dictionary to avoid recomputing alignments. This 
+dictionary should be cleared after all variants are counted, to save memory.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Using the <a class="reference internal" href="aligner.html#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> dramatically increases runtime.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.variant.VariantSeqLib.count_mutations">
+<tt class="descname">count_mutations</tt><big>(</big><em>include_indels=False</em><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib.count_mutations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the individual mutations in all variants. If <em>include_indels</em> is <tt class="docutils literal"><span class="pre">False</span></tt>, all mutations in a variant that contains 
+an insertion/deletion/duplication will not be counted. For coding sequences, amino acid substitutions are counted
+independently of the corresponding nucleotide change.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.variant.VariantSeqLib.count_variant">
+<tt class="descname">count_variant</tt><big>(</big><em>variant_dna</em>, <em>copies=1</em>, <em>include_indels=True</em><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib.count_variant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifies mutations and counts the <em>variant_dna</em> sequence.
+The algorithm attempts to call variants by comparing base-by-base.
+If the <em>variant_dna</em> and wild type DNA are different lengths, or if there
+are an excess of mismatches (indicating a possible indel), local
+alignment is performed using <a class="reference internal" href="#seqlib.variant.VariantSeqLib.align_variant" title="seqlib.variant.VariantSeqLib.align_variant"><tt class="xref py py-meth docutils literal"><span class="pre">align_variant()</span></tt></a> if this option 
+has been selected in the configuration.</p>
+<p>Each variant is stored as a tab-delimited string of mutations in HGVS 
+format. Returns a list of HGSV variant strings. Returns an empty list 
+if the variant is wild type. Returns None if the variant was discarded
+due to excess mismatches.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.variant.VariantSeqLib.is_coding">
+<tt class="descname">is_coding</tt><big>(</big><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib.is_coding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <tt class="docutils literal"><span class="pre">True</span></tt> if the variants are protein-coding, else <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.variant.VariantSeqLib.set_wt">
+<tt class="descname">set_wt</tt><big>(</big><em>sequence</em>, <em>coding=True</em><big>)</big><a class="headerlink" href="#seqlib.variant.VariantSeqLib.set_wt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the wild type DNA <em>sequence</em>. The <em>sequence</em> is translated if <em>coding</em> 
+is <tt class="docutils literal"><span class="pre">True</span></tt>. The <em>sequence</em> may only contain <tt class="docutils literal"><span class="pre">ACGT</span></tt>, but may 
+contain whitespace (which will be removed). If <em>coding</em>, <em>sequence</em> must be in-frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.2. <tt class="docutils literal"><span class="pre">variant</span></tt> &#8212; Abstract class for sequencing libraries with variants</a><ul>
+<li><a class="reference internal" href="#variantseqlib-class">2.2.1. <tt class="docutils literal"><span class="pre">VariantSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="seqlib.html"
+                        title="previous chapter">2.1. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">seqlib</span></tt> &#8212; Abstract class for sequencing libraries</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="basic.html"
+                        title="next chapter">2.3. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">basic</span></tt> &#8212; Single-read sequencing library</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/variant.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="basic.html" title="2.3. basic — Single-read sequencing library"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="seqlib.html" title="2.1. seqlib — Abstract class for sequencing libraries"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" >2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

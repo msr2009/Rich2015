@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.1. seqlib — Abstract class for sequencing libraries &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="2. Sequencing library modules" href="seqlib_overview.html" />
+    <link rel="next" title="2.2. variant — Abstract class for sequencing libraries with variants" href="variant.html" />
+    <link rel="prev" title="2. Sequencing library modules" href="seqlib_overview.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="variant.html" title="2.2. variant — Abstract class for sequencing libraries with variants"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="seqlib_overview.html" title="2. Sequencing library modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" accesskey="U">2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-seqlib.seqlib">
+<span id="seqlib-abstract-class-for-sequencing-libraries"></span><h1>2.1. <a class="reference internal" href="#module-seqlib.seqlib" title="seqlib.seqlib: Abstract class for sequencing libraries."><tt class="xref py py-mod docutils literal"><span class="pre">seqlib</span></tt></a> &#8212; Abstract class for sequencing libraries<a class="headerlink" href="#module-seqlib.seqlib" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-seqlib.seqlib" title="seqlib.seqlib: Abstract class for sequencing libraries."><tt class="xref py py-mod docutils literal"><span class="pre">seqlib</span></tt></a> module contains the class definition for the <a class="reference internal" href="#seqlib.seqlib.SeqLib" title="seqlib.seqlib.SeqLib"><tt class="xref py py-class docutils literal"><span class="pre">SeqLib</span></tt></a> abstract class, the base class for all sequencing library data in the <a class="reference external" href="index.html">Enrich2</a> project.</p>
+<div class="section" id="seqlib-class">
+<h2>2.1.1. <a class="reference internal" href="#seqlib.seqlib.SeqLib" title="seqlib.seqlib.SeqLib"><tt class="xref py py-class docutils literal"><span class="pre">SeqLib</span></tt></a> class<a class="headerlink" href="#seqlib-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.seqlib.SeqLib">
+<em class="property">class </em><tt class="descclassname">seqlib.seqlib.</tt><tt class="descname">SeqLib</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#seqlib.seqlib.SeqLib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for handling count data from a single sequencing library.
+Creating a <a class="reference internal" href="#seqlib.seqlib.SeqLib" title="seqlib.seqlib.SeqLib"><tt class="xref py py-class docutils literal"><span class="pre">seqlib.seqlib.SeqLib</span></tt></a> requires a valid <em>config</em> 
+object, usually from a <tt class="docutils literal"><span class="pre">.json</span></tt> configuration file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Example configuration files can be found in the documentation     for derived classes.</p>
+</div>
+<dl class="method">
+<dt id="seqlib.seqlib.SeqLib.calculate">
+<tt class="descname">calculate</tt><big>(</big><big>)</big><a class="headerlink" href="#seqlib.seqlib.SeqLib.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure virtual method that defines how the data are counted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.seqlib.SeqLib.report_filtered_read">
+<tt class="descname">report_filtered_read</tt><big>(</big><em>fq</em>, <em>filter_flags</em><big>)</big><a class="headerlink" href="#seqlib.seqlib.SeqLib.report_filtered_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the <a class="reference internal" href="fqread.html#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> object <em>fq</em> to the <tt class="docutils literal"><span class="pre">DEBUG</span></tt>
+logging . The dictionary <em>filter_flags</em> contains <tt class="docutils literal"><span class="pre">True</span></tt> 
+values for each filtering option that applies to <em>fq</em>. Keys in 
+<em>filter_flags</em> are converted to messages using the 
+<tt class="docutils literal"><span class="pre">DataContainer._filter_messages</span></tt> dictionary.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.1. <tt class="docutils literal"><span class="pre">seqlib</span></tt> &#8212; Abstract class for sequencing libraries</a><ul>
+<li><a class="reference internal" href="#seqlib-class">2.1.1. <tt class="docutils literal"><span class="pre">SeqLib</span></tt> class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="seqlib_overview.html"
+                        title="previous chapter">2. Sequencing library modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="variant.html"
+                        title="next chapter">2.2. <tt class="docutils literal docutils literal"><span class="pre">variant</span></tt> &#8212; Abstract class for sequencing libraries with variants</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/seqlib.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="variant.html" title="2.2. variant — Abstract class for sequencing libraries with variants"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="seqlib_overview.html" title="2. Sequencing library modules"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" >2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

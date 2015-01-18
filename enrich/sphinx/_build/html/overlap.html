@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.4. overlap — Overlapping paired-end sequencing library &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="2. Sequencing library modules" href="seqlib_overview.html" />
+    <link rel="next" title="2.5. barcode — Barcoded sequencing library" href="barcode.html" />
+    <link rel="prev" title="2.3. basic — Single-read sequencing library" href="basic.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="barcode.html" title="2.5. barcode — Barcoded sequencing library"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="basic.html" title="2.3. basic — Single-read sequencing library"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" accesskey="U">2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-seqlib.overlap">
+<span id="overlap-overlapping-paired-end-sequencing-library"></span><h1>2.4. <a class="reference internal" href="#module-seqlib.overlap" title="seqlib.overlap: Overlapping paired-end sequencing library."><tt class="xref py py-mod docutils literal"><span class="pre">overlap</span></tt></a> &#8212; Overlapping paired-end sequencing library<a class="headerlink" href="#module-seqlib.overlap" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-seqlib.overlap" title="seqlib.overlap: Overlapping paired-end sequencing library."><tt class="xref py py-mod docutils literal"><span class="pre">overlap</span></tt></a> module contains the class definition for the <a class="reference internal" href="#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a>, which stores data from a sequencing library constructed to have an overlapping read pair (forward and reverse) for each variant sequence.</p>
+<div class="section" id="configuration-options">
+<h2>2.4.1. Configuration options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>&#8216;name&#8217;</strong>  - <em>required</em></dt>
+<dd>The name of this entity. This used for output directory names, and is included in every error message and log message. Names should be unique within a single analysis, but this is not enforced.</dd>
+<dt><strong>&#8216;output directory&#8217;</strong></dt>
+<dd><p class="first">Sets the base output directory for the analysis. Output files and directories will be created in subdirectories at this location. It will be created if it doesn&#8217;t exist.</p>
+<p>If desired, the output directory can be set for each entity separately. If no &#8216;output directory&#8217; is included in the config, the entity will use the parent&#8217;s setting.</p>
+<p class="last">This setting is required for the top level entity (usually an <a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>) in each analysis.</p>
+</dd>
+<dt><strong>&#8216;timepoint&#8217;</strong> - <em>required</em></dt>
+<dd>Integer timepoint for this sequencing library. This can indicate time at which timepoints were taken (in hours, days, etc.) or the number of rounds of selection. The input library must be timepoint 0. Multiple sequencing libraries with the same timepoint will be combined by <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a>.</dd>
+<dt><strong>&#8216;report filtered reads&#8217;</strong></dt>
+<dd><p class="first">If this is <tt class="docutils literal"><span class="pre">True</span></tt>, reads that are filtered out will be written to the log file, along with a message about which filters they failed.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Enabling this option can generate very large log files, and it is recommended that it should only be used for troubleshooting subsets of the data.</p>
+</div>
+</dd>
+<dt><strong>&#8216;wild type&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the wild type sequence for this sequencing library.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;sequence&#8217;</strong> - <em>required</em></dt>
+<dd>The wild type DNA sequence. The sequence should be the same length as the sequences being compared to it (after any merging or read trimming).</dd>
+<dt><strong>&#8216;coding&#8217;</strong> - <em>required</em></dt>
+<dd>Set to <strong>True</strong> if the wild type sequence codes for protein. If this is <strong>True</strong>, amino acid changes will be computed for all variants. The wild type sequence must be in-frame.</dd>
+<dt><strong>&#8216;reference offset&#8217;</strong></dt>
+<dd>If this integer option is set, the value will be added to the DNA position (with respect to the wild type sequence) of each variant called. This is used to indicate the position of the mutagenized region within a longer sequence (mRNA, chromosome, etc.).</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;align variants&#8217;</strong></dt>
+<dd><p class="first">Set to <tt class="docutils literal"><span class="pre">True</span></tt> to use the <a class="reference internal" href="aligner.html#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> to align variants that have too many mutations or an unexpected length. Calls indels as well as single nucleotide changes.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Alignment is typically disabled for performance reasons unless the user is interested in indel mutations.</p>
+</div>
+</dd>
+<dt><strong>&#8216;fastq&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;forward&#8217;</strong> and <strong>&#8216;reverse&#8217;</strong> - <em>required</em></dt>
+<dd>Both <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> files must be specified. All reads in the &#8216;reverse&#8217; file will be reverse-complemented during the merging process.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;overlap&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about how the forward and reverse reads should be combined.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;forward start&#8217;</strong> - <em>required</em></dt>
+<dd>Position in the forward read (first base is position 1) where the overlapping region begins.</dd>
+<dt><strong>&#8216;reverse start&#8217;</strong> - <em>required</em></dt>
+<dd>Position in the reverse read (first base is position 1) where the overlapping region begins. This is the position in the read before reverse-complementing.</dd>
+<dt><strong>&#8216;length&#8217;</strong> - <em>required</em></dt>
+<dd>Number of bases in the overlaping region.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;overlap only&#8217;</strong> - <em>required</em></dt>
+<dd>If this option is <tt class="docutils literal"><span class="pre">True</span></tt>, the portions of the read that are outside the overlapping region will be trimmed before calling variants. Otherwise, the portion of the forward read before the overlapping region and the portion of the reverse read after the overlapping region are included in the variant sequence.</dd>
+<dt><strong>&#8216;max mismatches&#8217;</strong> - <em>required</em></dt>
+<dd>The maximum number of mismatches tolerated in the overlapping region.</dd>
+<dt><strong>&#8216;filters&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Filtering options for reads and variants.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;min quality&#8217;</strong></dt>
+<dd>Minimum quality value for all bases in the merged read.</dd>
+<dt><strong>&#8216;avg quality&#8217;</strong></dt>
+<dd>Minimum average quality value for the merged read.</dd>
+<dt><strong>&#8216;chastity&#8217;</strong></dt>
+<dd>If <tt class="docutils literal"><span class="pre">True</span></tt>, require that both forward and reverse reads have the chastity bit set in their <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> headers.</dd>
+<dt><strong>&#8216;max mutations&#8217;</strong></dt>
+<dd>Maximum number of mutations allowed for the variant.</dd>
+<dt><strong>&#8216;remove unresolvable&#8217;</strong></dt>
+<dd>Remove merged reads with unresolvable mismatches (different nucleotides with the same quality score at the same position).</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="overlapseqlib-class">
+<h2>2.4.2. <a class="reference internal" href="#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a> class<a class="headerlink" href="#overlapseqlib-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.overlap.OverlapSeqLib">
+<em class="property">class </em><tt class="descclassname">seqlib.overlap.</tt><tt class="descname">OverlapSeqLib</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#seqlib.overlap.OverlapSeqLib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for count data from sequencing libraries with overlapping paired-end 
+reads for each variant. Creating a 
+<a class="reference internal" href="#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a> requires a valid <em>config</em> object 
+with an <tt class="docutils literal"><span class="pre">'overlap'</span></tt> entry.</p>
+<p>Example config file for a <a class="reference internal" href="#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Overlap Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_forward_reads.fq&quot;</span><span class="p">,</span>
+    <span class="s">&quot;reverse&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reverse_reads.fq&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="s">&quot;overlap&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward start&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s">&quot;reverse start&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s">&quot;overlap only&quot;</span> <span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s">&quot;max mismatches&quot;</span> <span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/overlap.json"><tt class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">this</span> <span class="pre">JSON</span> <span class="pre">file</span></tt></a></p>
+<p>The <tt class="docutils literal"><span class="pre">&quot;fastq&quot;</span></tt> config entry must contain two read files, with the keys 
+<tt class="docutils literal"><span class="pre">&quot;forward&quot;</span></tt> and <tt class="docutils literal"><span class="pre">&quot;reverse&quot;</span></tt>. Information about how to combine these 
+reads is in the <tt class="docutils literal"><span class="pre">&quot;overlap&quot;</span></tt> config entry.</p>
+<p>The <tt class="docutils literal"><span class="pre">&quot;overlap&quot;</span></tt> config entry contains the following keys:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">&quot;forward</span> <span class="pre">start&quot;</span></tt> &#8212; position in the forward read where the         overlapping region begins</li>
+<li><tt class="docutils literal"><span class="pre">&quot;reverse</span> <span class="pre">start&quot;</span></tt> &#8212; position in the reverse read where the         overlapping region begins (before being reverse-complemented)</li>
+<li><tt class="docutils literal"><span class="pre">&quot;length&quot;</span></tt> &#8212; number of bases in the overlapping region</li>
+<li><tt class="docutils literal"><span class="pre">&quot;max</span> <span class="pre">mismatches&quot;</span></tt> &#8212; maximum number of mismatches tolerated in the         overlapping region before discarding the read</li>
+<li><tt class="docutils literal"><span class="pre">&quot;overlap</span> <span class="pre">only&quot;</span></tt> &#8212; whether to trim the merged read to contain only         the overlapping region (optional, defaults to <tt class="docutils literal"><span class="pre">False</span></tt>)</li>
+</ul>
+<p>Here is a schematic of the case in the above JSON example:</p>
+<div class="highlight-python"><div class="highlight"><pre>forward ---&gt; 1   
+             CGACGCAAGGA
+               |||||||||
+               ACTCCTTGCGTCG
+                           1 &lt;--- reverse
+</pre></div>
+</div>
+<p>Note that the merged sequence is identical to the wild type sequence given 
+in the JSON file.</p>
+<dl class="method">
+<dt id="seqlib.overlap.OverlapSeqLib.calculate">
+<tt class="descname">calculate</tt><big>(</big><big>)</big><a class="headerlink" href="#seqlib.overlap.OverlapSeqLib.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the forward and reverse reads, merges them, performs 
+quality-based filtering, and counts the variants.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.overlap.OverlapSeqLib.merge_reads">
+<tt class="descname">merge_reads</tt><big>(</big><em>fwd</em>, <em>rev</em><big>)</big><a class="headerlink" href="#seqlib.overlap.OverlapSeqLib.merge_reads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combines the <em>fwd</em> and <em>rev</em> <a class="reference internal" href="fqread.html#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> objects into a 
+single <a class="reference internal" href="fqread.html#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> with the same header information as 
+<em>fwd</em>. Mismatches are resolved by taking the highest quality base. If 
+discrepant bases have the same quality value, this position is 
+unresolvable and an <tt class="docutils literal"><span class="pre">'X'</span></tt> is inserted. Quality values in the 
+resulting <a class="reference internal" href="fqread.html#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> are the maximum quality for the 
+given base at that position. Returns <tt class="docutils literal"><span class="pre">None</span></tt> if the maximum number of 
+mismatches in the overlap region is exceded.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.4. <tt class="docutils literal"><span class="pre">overlap</span></tt> &#8212; Overlapping paired-end sequencing library</a><ul>
+<li><a class="reference internal" href="#configuration-options">2.4.1. Configuration options</a></li>
+<li><a class="reference internal" href="#overlapseqlib-class">2.4.2. <tt class="docutils literal"><span class="pre">OverlapSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="basic.html"
+                        title="previous chapter">2.3. <tt class="docutils literal docutils literal docutils literal"><span class="pre">basic</span></tt> &#8212; Single-read sequencing library</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="barcode.html"
+                        title="next chapter">2.5. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">barcode</span></tt> &#8212; Barcoded sequencing library</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/overlap.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="barcode.html" title="2.5. barcode — Barcoded sequencing library"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="basic.html" title="2.3. basic — Single-read sequencing library"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" >2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

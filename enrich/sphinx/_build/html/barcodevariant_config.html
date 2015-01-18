@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="selection_config.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="barcode_config.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="selection_config.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="barcode_config.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <dl class="docutils">
+<dt><strong>&#8216;name&#8217;</strong>  - <em>required</em></dt>
+<dd>The name of this entity. This used for output directory names, and is included in every error message and log message. Names should be unique within a single analysis, but this is not enforced.</dd>
+<dt><strong>&#8216;output directory&#8217;</strong></dt>
+<dd><p class="first">Sets the base output directory for the analysis. Output files and directories will be created in subdirectories at this location. It will be created if it doesn&#8217;t exist.</p>
+<p>If desired, the output directory can be set for each entity separately. If no &#8216;output directory&#8217; is included in the config, the entity will use the parent&#8217;s setting.</p>
+<p class="last">This setting is required for the top level entity (usually an <a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>) in each analysis.</p>
+</dd>
+<dt><strong>&#8216;timepoint&#8217;</strong> - <em>required</em></dt>
+<dd>Integer timepoint for this sequencing library. This can indicate time at which timepoints were taken (in hours, days, etc.) or the number of rounds of selection. The input library must be timepoint 0. Multiple sequencing libraries with the same timepoint will be combined by <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a>.</dd>
+<dt><strong>&#8216;report filtered reads&#8217;</strong></dt>
+<dd><p class="first">If this is <tt class="docutils literal"><span class="pre">True</span></tt>, reads that are filtered out will be written to the log file, along with a message about which filters they failed.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Enabling this option can generate very large log files, and it is recommended that it should only be used for troubleshooting subsets of the data.</p>
+</div>
+</dd>
+<dt><strong>&#8216;wild type&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the wild type sequence for this sequencing library.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;sequence&#8217;</strong> - <em>required</em></dt>
+<dd>The wild type DNA sequence. The sequence should be the same length as the sequences being compared to it (after any merging or read trimming).</dd>
+<dt><strong>&#8216;coding&#8217;</strong> - <em>required</em></dt>
+<dd>Set to <strong>True</strong> if the wild type sequence codes for protein. If this is <strong>True</strong>, amino acid changes will be computed for all variants. The wild type sequence must be in-frame.</dd>
+<dt><strong>&#8216;reference offset&#8217;</strong></dt>
+<dd>If this integer option is set, the value will be added to the DNA position (with respect to the wild type sequence) of each variant called. This is used to indicate the position of the mutagenized region within a longer sequence (mRNA, chromosome, etc.).</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;align variants&#8217;</strong></dt>
+<dd><p class="first">Set to <tt class="docutils literal"><span class="pre">True</span></tt> to use the <a class="reference internal" href="aligner.html#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> to align variants that have too many mutations or an unexpected length. Calls indels as well as single nucleotide changes.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Alignment is typically disabled for performance reasons unless the user is interested in indel mutations.</p>
+</div>
+</dd>
+<dt><strong>&#8216;fastq&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;forward&#8217;</strong> or <strong>&#8216;reverse&#8217;</strong> - <em>required</em></dt>
+<dd>Only one <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file may be specified. If the file is &#8216;reverse&#8217;, all reads will be reverse-complemented before barcodes are counted.</dd>
+<dt><strong>&#8216;start&#8217;</strong></dt>
+<dd>Starting position of the barcode in the read (first base is position 1). Used for optional read trimming.</dd>
+<dt><strong>&#8216;length&#8217;</strong></dt>
+<dd>Number of bases in the barcode. Used for optional read trimming.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;barcodes&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">This config option must be present for the sequences to be treated as barcodes, even if it has no elements in it.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;map file&#8217;</strong></dt>
+<dd>Path to the <a class="reference internal" href="barcodevariant.html#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a> file mapping barcodes to variant sequences. If this option is not set, the <a class="reference internal" href="barcodevariant.html#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a> from the <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> will be used.</dd>
+<dt><strong>&#8216;min count&#8217;</strong></dt>
+<dd>Minimum count for a barcode to be included in the analysis. Barcodes with counts below this threshold will be output as low abundance barcodes, then discarded.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;filters&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Filtering options for reads and variants.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;min quality&#8217;</strong></dt>
+<dd>Minimum quality value for all bases in the read.</dd>
+<dt><strong>&#8216;avg quality&#8217;</strong></dt>
+<dd>Minimum average quality value for the read.</dd>
+<dt><strong>&#8216;chastity&#8217;</strong></dt>
+<dd>If <tt class="docutils literal"><span class="pre">True</span></tt>, require that the read has the chastity bit set in the <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> header.</dd>
+<dt><strong>&#8216;max mutations&#8217;</strong></dt>
+<dd>Maximum number of mutations allowed for the variant.</dd>
+</dl>
+</dd>
+</dl>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="barcode_config.html"
+                        title="previous chapter">&lt;no title&gt;</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="selection_config.html"
+                        title="next chapter">&lt;no title&gt;</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/barcodevariant_config.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="selection_config.html" title="&lt;no title&gt;"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="barcode_config.html" title="&lt;no title&gt;"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

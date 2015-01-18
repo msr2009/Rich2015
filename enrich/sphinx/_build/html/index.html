@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Documentation for Enrich2 &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="#" />
+    <link rel="next" title="1. datacontainer — Abstract class for Enrich data" href="datacontainer.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datacontainer.html" title="1. datacontainer — Abstract class for Enrich data"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="documentation-for-enrich2">
+<h1>Documentation for Enrich2<a class="headerlink" href="#documentation-for-enrich2" title="Permalink to this headline">¶</a></h1>
+<p>Enrich is an analysis pipeline for using high throughput sequencing data to assess protein sequence-function relationships.</p>
+<a class="reference internal image-reference" href="_images/c09.jpg"><img alt="_images/c09.jpg" src="_images/c09.jpg" style="width: 600px;" /></a>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datacontainer.html">1. <tt class="docutils literal"><span class="pre">datacontainer</span></tt> &#8212; Abstract class for Enrich data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datacontainer.html#datacontainer-class">1.1. <tt class="docutils literal"><span class="pre">DataContainer</span></tt> class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datacontainer.html#datacontainer-utility-functions">1.2. <tt class="docutils literal"><span class="pre">datacontainer</span></tt> utility functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="seqlib_overview.html">2. Sequencing library modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="seqlib.html">2.1. <tt class="docutils literal"><span class="pre">seqlib</span></tt> &#8212; Abstract class for sequencing libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="seqlib.html#seqlib-class">2.1.1. <tt class="docutils literal"><span class="pre">SeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="variant.html">2.2. <tt class="docutils literal"><span class="pre">variant</span></tt> &#8212; Abstract class for sequencing libraries with variants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variant.html#variantseqlib-class">2.2.1. <tt class="docutils literal"><span class="pre">VariantSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic.html">2.3. <tt class="docutils literal"><span class="pre">basic</span></tt> &#8212; Single-read sequencing library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#configuration-options">2.3.1. Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic.html#basicseqlib-class">2.3.2. <tt class="docutils literal"><span class="pre">BasicSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overlap.html">2.4. <tt class="docutils literal"><span class="pre">overlap</span></tt> &#8212; Overlapping paired-end sequencing library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overlap.html#configuration-options">2.4.1. Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overlap.html#overlapseqlib-class">2.4.2. <tt class="docutils literal"><span class="pre">OverlapSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="barcode.html">2.5. <tt class="docutils literal"><span class="pre">barcode</span></tt> &#8212; Barcoded sequencing library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="barcode.html#configuration-options">2.5.1. Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcode.html#barcodeseqlib-class">2.5.2. <tt class="docutils literal"><span class="pre">BarcodeSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="barcodevariant.html">2.6. <tt class="docutils literal"><span class="pre">barcodevariant</span></tt> &#8212; Barcoded variant sequencing library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="barcodevariant.html#configuration-options">2.6.1. Configuration options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcodevariant.html#barcodemap-class">2.6.2. <tt class="docutils literal"><span class="pre">BarcodeMap</span></tt> class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="barcodevariant.html#barcodevariantseqlib-class">2.6.3. <tt class="docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="seqlib_overview.html#inheritance-diagram-for-seqlib-derived-classes">2.7. Inheritance diagram for <tt class="docutils literal"><span class="pre">SeqLib</span></tt> derived classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="selection.html">3. <tt class="docutils literal"><span class="pre">selection</span></tt> &#8212; Class for analyzing a selection timeseries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#configuration-options">3.1. Configuration options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#selection-class">3.2. <tt class="docutils literal"><span class="pre">Selection</span></tt> class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#selection-apply-functions">3.3. <tt class="docutils literal"><span class="pre">selection</span></tt> apply functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#filtering-apply-functions">3.3.1. Filtering apply functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#barcodevariant-specific-apply-functions">3.3.2. <tt class="docutils literal"><span class="pre">BarcodeVariant</span></tt>-specific apply functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiment.html">4. <tt class="docutils literal"><span class="pre">experiment</span></tt> &#8212; Class for comparing multiple selections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#configuration-options">4.1. Configuration options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#experiment-class">4.2. <tt class="docutils literal"><span class="pre">Experiment</span></tt> class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment.html#experiment-apply-functions">4.3. <tt class="docutils literal"><span class="pre">experiment</span></tt> apply functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="other_overview.html">5. Other modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fqread.html">5.1. <tt class="docutils literal"><span class="pre">fqread</span></tt> &#8212; Manipulation of FASTQ records</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fqread.html#fqread-class">5.1.1. <tt class="docutils literal"><span class="pre">FQRead</span></tt> class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fqread.html#generator-functions">5.1.2. Generator functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fqread.html#miscellaneous-functions">5.1.3. Miscellaneous functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="aligner.html">5.2. <tt class="docutils literal"><span class="pre">aligner</span></tt> &#8212; Needleman-Wunsch alignment for variants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aligner.html#aligner-class">5.2.1. <tt class="docutils literal"><span class="pre">Aligner</span></tt> class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="enrich_error.html">5.3. <tt class="docutils literal"><span class="pre">enrich_error</span></tt> &#8212; Error handling for Enrich2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_examples.html">6. List of example configuration files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#basicseqlib">6.1. <tt class="docutils literal"><span class="pre">BasicSeqLib</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#overlapseqlib">6.2. <tt class="docutils literal"><span class="pre">OverlapSeqLib</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#barcodeseqlib">6.3. <tt class="docutils literal"><span class="pre">BarcodeSeqLib</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#barcodevariantseqlib">6.4. <tt class="docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#selection">6.5. <tt class="docutils literal"><span class="pre">Selection</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_examples.html#experiment">6.6. <tt class="docutils literal"><span class="pre">Experiment</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentation for Enrich2</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="datacontainer.html"
+                        title="next chapter">1. <tt class="docutils literal docutils literal docutils literal"><span class="pre">datacontainer</span></tt> &#8212; Abstract class for Enrich data</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datacontainer.html" title="1. datacontainer — Abstract class for Enrich data"
+             >next</a> |</li>
+        <li><a href="#">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

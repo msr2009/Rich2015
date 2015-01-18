@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Enrich2 Project To Do List &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="datacontainer_config.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="global.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datacontainer_config.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="global.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="enrich2-project-to-do-list">
+<h1>Enrich2 Project To Do List<a class="headerlink" href="#enrich2-project-to-do-list" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>Write test datasets</p>
+<ul class="simple">
+<li><a class="reference internal" href="fqread.html#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a></li>
+<li>trim_fastq.py</li>
+<li>split_fastq.py</li>
+<li><a class="reference internal" href="barcode.html#seqlib.barcode.BarcodeSeqLib" title="seqlib.barcode.BarcodeSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="basic.html#seqlib.basic.BasicSeqLib" title="seqlib.basic.BasicSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BasicSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="overlap.html#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="barcodevariant.html#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a></li>
+<li><a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a></li>
+</ul>
+</div>
+<div class="section" id="implementation-high-priority">
+<h2>Implementation - High Priority<a class="headerlink" href="#implementation-high-priority" title="Permalink to this headline">¶</a></h2>
+<p>Make a pass for adding additional status messages</p>
+<p>Add basic plotting functions</p>
+<ul>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="seqlib.html#seqlib.seqlib.SeqLib" title="seqlib.seqlib.SeqLib"><tt class="xref py py-class docutils literal"><span class="pre">SeqLib</span></tt></a></dt>
+<dd><ul class="first last simple">
+<li>Diversity heatmap</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a></dt>
+<dd><ul class="first last simple">
+<li>Sequence-function map</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a></dt>
+<dd><ul class="first last simple">
+<li>Sequence-function map</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Implement replicate comparison <tt class="docutils literal"><span class="pre">[experiment.py]</span></tt></p>
+<p>Implement control-based correction <tt class="docutils literal"><span class="pre">[experiment.py]</span></tt></p>
+<p>Implement filtering <tt class="docutils literal"><span class="pre">[experiment.py]</span></tt></p>
+</div>
+<div class="section" id="implementation-low-priority">
+<h2>Implementation - Low Priority<a class="headerlink" href="#implementation-low-priority" title="Permalink to this headline">¶</a></h2>
+<p>Extend logging to use multiple files (specifically to support sending filtered reads to their own output file)</p>
+<p>Define a custom logging message formatting - &#8220;root&#8221; is unnecessary and confusing <tt class="docutils literal"><span class="pre">[enrich.py]</span></tt></p>
+<p>Polish pass through <tt class="docutils literal"><span class="pre">import</span></tt> statements</p>
+<p>Add multithreading to library read stage (one thread per SeqLib to speed up file I/O step)</p>
+<p>More advanced management of peak memory usage</p>
+<blockquote>
+<div><ul class="simple">
+<li>Maximum size of barcode dictionary before being dumped to disk to a (key-sorted) temp file, then merge the counts from the temp files.</li>
+<li>For barcode_map barcodes, perform the barcode_map-based filtering at each threshold, then resolve merging the unmapped barcodes in the temp files.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Document logging behaviour (message types output at <tt class="docutils literal"><span class="pre">INFO</span></tt>, <tt class="docutils literal"><span class="pre">DEBUG</span></tt> levels) and standard log message format:</p>
+<div class="highlight-python"><div class="highlight"><pre>Capitalized message [self.name]
+</pre></div>
+</div>
+<p>Bare <tt class="docutils literal"><span class="pre">.html</span></tt> landing page for the documentation</p>
+<p>Better description of the output file structure (especially <em>subdirectory</em> for <a class="reference internal" href="datacontainer.html#datacontainer.DataContainer.write_data" title="datacontainer.DataContainer.write_data"><tt class="xref py py-meth docutils literal"><span class="pre">write_data()</span></tt></a>)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Enrich2 Project To Do List</a><ul>
+<li><a class="reference internal" href="#debugging">Debugging</a></li>
+<li><a class="reference internal" href="#implementation-high-priority">Implementation - High Priority</a></li>
+<li><a class="reference internal" href="#implementation-low-priority">Implementation - Low Priority</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="global.html"
+                        title="previous chapter">&lt;no title&gt;</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="datacontainer_config.html"
+                        title="next chapter">&lt;no title&gt;</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/todo.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="datacontainer_config.html" title="&lt;no title&gt;"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="global.html" title="&lt;no title&gt;"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

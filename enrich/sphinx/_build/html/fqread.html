@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.1. fqread — Manipulation of FASTQ records &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="5. Other modules" href="other_overview.html" />
+    <link rel="next" title="5.2. aligner — Needleman-Wunsch alignment for variants" href="aligner.html" />
+    <link rel="prev" title="5. Other modules" href="other_overview.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="aligner.html" title="5.2. aligner — Needleman-Wunsch alignment for variants"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="other_overview.html" title="5. Other modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="other_overview.html" accesskey="U">5. Other modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-fqread">
+<span id="fqread-manipulation-of-fastq-records"></span><h1>5.1. <a class="reference internal" href="#module-fqread" title="fqread: Manipulation of FASTQ records."><tt class="xref py py-mod docutils literal"><span class="pre">fqread</span></tt></a> &#8212; Manipulation of FASTQ records<a class="headerlink" href="#module-fqread" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-fqread" title="fqread: Manipulation of FASTQ records."><tt class="xref py py-mod docutils literal"><span class="pre">fqread</span></tt></a> module contains the <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> class for storing and manipulating <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> records, and associated utility functions for reading these data from standard files.</p>
+<div class="section" id="fqread-class">
+<h2>5.1.1. <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> class<a class="headerlink" href="#fqread-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="fqread.FQRead">
+<em class="property">class </em><tt class="descclassname">fqread.</tt><tt class="descname">FQRead</tt><big>(</big><em>header</em>, <em>sequence</em>, <em>header2</em>, <em>quality</em>, <em>qbase=33</em><big>)</big><a class="headerlink" href="#fqread.FQRead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores a single record from a <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file. Quality values are stored 
+internally as a list of integer <a class="reference external" href="http://www.phrap.com/phred/#qualityscores">Phred quality scores</a>. The <em>qbase</em> parameter is 
+the ASCII value that correponds to Phred score of 0. The <em>sequence</em> and 
+<em>quality</em> strings must be the same length.</p>
+<dl class="method">
+<dt id="fqread.FQRead.__len__">
+<tt class="descname">__len__</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.__len__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object length is the length of the sequence.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reformat as a four-line <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> record. This method converts the 
+integer quality values back into a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.header_information">
+<tt class="descname">header_information</tt><big>(</big><em>pattern=header_pattern</em><big>)</big><a class="headerlink" href="#fqread.FQRead.header_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the first <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> header (&#64; header) and returns a dictionary. 
+Dictionary keys are the named groups in the regular expression 
+<em>pattern</em>. Unnamed matches are ignored. Integer values are converted 
+from strings to integers.</p>
+<p>The default pattern matches a header in the format:</p>
+<div class="highlight-python"><div class="highlight"><pre>@&lt;MachineName&gt;:&lt;Lane&gt;:&lt;Tile&gt;:&lt;X&gt;:&lt;Y&gt;:&lt;Chastity&gt;#&lt;IndexRead&gt;/&lt;ReadNumber&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.is_chaste">
+<tt class="descname">is_chaste</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.is_chaste" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">True</span></tt> if the chastity bit is set in the header. The 
+regular experession used by <a class="reference internal" href="#fqread.FQRead.header_information" title="fqread.FQRead.header_information"><tt class="xref py py-meth docutils literal"><span class="pre">header_information()</span></tt></a> must  
+include a <tt class="docutils literal"><span class="pre">'Chastity'</span></tt> match that equals <tt class="docutils literal"><span class="pre">1</span></tt> if the read is 
+chaste.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.mean_quality">
+<tt class="descname">mean_quality</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.mean_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average Phred-like quality score.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.min_quality">
+<tt class="descname">min_quality</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.min_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the minimum Phred-like quality score.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.revcomp">
+<tt class="descname">revcomp</tt><big>(</big><big>)</big><a class="headerlink" href="#fqread.FQRead.revcomp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse-complement the sequence in place. Also reverses the array of 
+quality values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.trim">
+<tt class="descname">trim</tt><big>(</big><em>start=1</em>, <em>end=None</em><big>)</big><a class="headerlink" href="#fqread.FQRead.trim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trims this <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> to contain bases between 
+<em>start</em> and <em>end</em> (inclusive). Bases are numbered starting at 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fqread.FQRead.trim_length">
+<tt class="descname">trim_length</tt><big>(</big><em>length</em>, <em>start=1</em><big>)</big><a class="headerlink" href="#fqread.FQRead.trim_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trims this <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> to contain <em>length</em> bases, 
+beginning with <em>start</em>. Bases are numbered starting at 1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="generator-functions">
+<h2>5.1.2. Generator functions<a class="headerlink" href="#generator-functions" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#module-fqread" title="fqread: Manipulation of FASTQ records."><tt class="xref py py-mod docutils literal"><span class="pre">fqread</span></tt></a> module provides two generators (functions that return iterators) for reading records from <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> files. Input files are read in chunks to improve performance by minimizing disk accesses.</p>
+<dl class="function">
+<dt id="fqread.read_fastq">
+<tt class="descclassname">fqread.</tt><tt class="descname">read_fastq</tt><big>(</big><em>fname</em>, <em>filter_function=None</em>, <em>buffer_size=100000</em>, <em>qbase=33</em><big>)</big><a class="headerlink" href="#fqread.read_fastq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator function for reading from <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file <em>fname</em>. Yields an 
+<a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> object for each <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> record in the file. The 
+<em>filter_function</em> must operate on an <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> object 
+and return <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>. If the result is <tt class="docutils literal"><span class="pre">False</span></tt>, the record 
+will be skipped silently.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To read multiple files in parallel (such as index or         forward/reverse reads), use <a class="reference internal" href="#fqread.read_fastq_multi" title="fqread.read_fastq_multi"><tt class="xref py py-func docutils literal"><span class="pre">read_fastq_multi()</span></tt></a> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="fqread.read_fastq_multi">
+<tt class="descclassname">fqread.</tt><tt class="descname">read_fastq_multi</tt><big>(</big><em>fnames</em>, <em>filter_function=None</em>, <em>buffer_size=100000</em>, <em>match_lengths=True</em>, <em>qbase=33</em><big>)</big><a class="headerlink" href="#fqread.read_fastq_multi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator function for reading from multiple <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> files in parallel. 
+The argument <em>fnames</em> is an iterable of <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file names. Yields a 
+tuple of <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> objects, one for each file in 
+<em>fnames</em>. The <em>filter_function</em> must operate on an <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> 
+object and return <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt>. If the result is <tt class="docutils literal"><span class="pre">False</span></tt> for 
+any <a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> in the tuple, the entire tuple will be skipped.</p>
+<p>If <em>match_lengths</em> is <tt class="docutils literal"><span class="pre">True</span></tt>, the generator will yield <tt class="docutils literal"><span class="pre">None</span></tt> if the 
+files do not contain the same number of <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> records. Otherwise, it 
+will silently ignore partial records.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="miscellaneous-functions">
+<h2>5.1.3. Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="fqread.check_fastq">
+<tt class="descclassname">fqread.</tt><tt class="descname">check_fastq</tt><big>(</big><em>fname</em><big>)</big><a class="headerlink" href="#fqread.check_fastq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that <em>fname</em> exists and has a valid <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file extension. Valid 
+file extensions are <tt class="docutils literal"><span class="pre">.fastq</span></tt> or <tt class="docutils literal"><span class="pre">.fq</span></tt>, optionally followed by <tt class="docutils literal"><span class="pre">.gz</span></tt> 
+or <tt class="docutils literal"><span class="pre">.bz2</span></tt> if the file is compressed. Returns the compression format 
+(<tt class="docutils literal"><span class="pre">&quot;gz&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;bz2&quot;</span></tt>, or <tt class="docutils literal"><span class="pre">None</span></tt>) if the file exists and the extension 
+is recognized, otherwise raise an <tt class="docutils literal"><span class="pre">IOError</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fqread.fastq_filter_chastity">
+<tt class="descclassname">fqread.</tt><tt class="descname">fastq_filter_chastity</tt><big>(</big><em>fq</em><big>)</big><a class="headerlink" href="#fqread.fastq_filter_chastity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filtering function for <a class="reference internal" href="#fqread.read_fastq" title="fqread.read_fastq"><tt class="xref py py-func docutils literal"><span class="pre">read_fastq()</span></tt></a> and 
+<a class="reference internal" href="#fqread.read_fastq_multi" title="fqread.read_fastq_multi"><tt class="xref py py-func docutils literal"><span class="pre">read_fastq_multi()</span></tt></a>. Returns <tt class="docutils literal"><span class="pre">True</span></tt> if the 
+<a class="reference internal" href="#fqread.FQRead" title="fqread.FQRead"><tt class="xref py py-class docutils literal"><span class="pre">FQRead</span></tt></a> object <em>fq</em> is chaste.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5.1. <tt class="docutils literal"><span class="pre">fqread</span></tt> &#8212; Manipulation of FASTQ records</a><ul>
+<li><a class="reference internal" href="#fqread-class">5.1.1. <tt class="docutils literal"><span class="pre">FQRead</span></tt> class</a></li>
+<li><a class="reference internal" href="#generator-functions">5.1.2. Generator functions</a></li>
+<li><a class="reference internal" href="#miscellaneous-functions">5.1.3. Miscellaneous functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="other_overview.html"
+                        title="previous chapter">5. Other modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="aligner.html"
+                        title="next chapter">5.2. <tt class="docutils literal docutils literal docutils literal docutils literal"><span class="pre">aligner</span></tt> &#8212; Needleman-Wunsch alignment for variants</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/fqread.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="aligner.html" title="5.2. aligner — Needleman-Wunsch alignment for variants"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="other_overview.html" title="5. Other modules"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="other_overview.html" >5. Other modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

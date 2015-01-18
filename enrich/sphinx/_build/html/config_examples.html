@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. List of example configuration files &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="global.html" />
+    <link rel="prev" title="5.3. enrich_error — Error handling for Enrich2" href="enrich_error.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="global.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="enrich_error.html" title="5.3. enrich_error — Error handling for Enrich2"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="list-of-example-configuration-files">
+<h1>6. List of example configuration files<a class="headerlink" href="#list-of-example-configuration-files" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basicseqlib">
+<h2>6.1. <a class="reference internal" href="basic.html#seqlib.basic.BasicSeqLib" title="seqlib.basic.BasicSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BasicSeqLib</span></tt></a><a class="headerlink" href="#basicseqlib" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/basic.json"><tt class="xref download docutils literal"><span class="pre">basic.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Basic Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reads.fq&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="overlapseqlib">
+<h2>6.2. <a class="reference internal" href="overlap.html#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a><a class="headerlink" href="#overlapseqlib" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/overlap.json"><tt class="xref download docutils literal"><span class="pre">overlap.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Overlap Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_forward_reads.fq&quot;</span><span class="p">,</span>
+    <span class="s">&quot;reverse&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reverse_reads.fq&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="s">&quot;overlap&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward start&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s">&quot;reverse start&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s">&quot;overlap only&quot;</span> <span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s">&quot;max mismatches&quot;</span> <span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="barcodeseqlib">
+<h2>6.3. <a class="reference internal" href="barcode.html#seqlib.barcode.BarcodeSeqLib" title="seqlib.barcode.BarcodeSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeSeqLib</span></tt></a><a class="headerlink" href="#barcodeseqlib" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/barcode.json"><tt class="xref download docutils literal"><span class="pre">barcode.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Barcode Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reads.fq&quot;</span><span class="p">,</span>
+    <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min count&quot;</span> <span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="barcodevariantseqlib">
+<h2>6.4. <a class="reference internal" href="barcodevariant.html#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a><a class="headerlink" href="#barcodevariantseqlib" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/barcodevariant.json"><tt class="xref download docutils literal"><span class="pre">barcodevariant.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Barcode Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reads.fq&quot;</span><span class="p">,</span>
+    <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selection">
+<h2>6.5. <tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt><a class="headerlink" href="#selection" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/selection.json"><tt class="xref download docutils literal"><span class="pre">selection.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Experimental Condition&quot;</span><span class="p">,</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min count&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s">&quot;min input count&quot;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s">&quot;min rsquared&quot;</span> <span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="s">&quot;max barcode variation&quot;</span> <span class="p">:</span> <span class="mf">3.0</span>
+  <span class="p">},</span>
+  <span class="s">&quot;carryover correction&quot;</span> <span class="p">:</span> <span class="s">&quot;nonsense&quot;</span><span class="p">,</span>
+  <span class="s">&quot;libraries&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Input&quot;</span><span class="p">,</span>
+      <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+        <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+      <span class="p">},</span>
+      <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/input_reads.fq&quot;</span><span class="p">,</span>
+        <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+      <span class="p">},</span>
+      <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+      <span class="p">},</span>
+      <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample 24hr&quot;</span><span class="p">,</span>
+      <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+      <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+        <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+      <span class="p">},</span>
+      <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/t24_reads.fq&quot;</span><span class="p">,</span>
+        <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+      <span class="p">},</span>
+      <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+      <span class="p">},</span>
+      <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample 48hr&quot;</span><span class="p">,</span>
+      <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+      <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+        <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+      <span class="p">},</span>
+      <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/t48_reads.fq&quot;</span><span class="p">,</span>
+        <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+      <span class="p">},</span>
+      <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+      <span class="p">},</span>
+      <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="experiment">
+<h2>6.6. <tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h2>
+<p>JSON source: <a class="reference download internal" href="_downloads/experiment.json"><tt class="xref download docutils literal"><span class="pre">experiment.json</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Experiment&quot;</span><span class="p">,</span>
+  <span class="s">&quot;conditions&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">&quot;label&quot;</span> <span class="p">:</span> <span class="s">&quot;normal&quot;</span><span class="p">,</span>
+      <span class="s">&quot;control&quot;</span> <span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+      <span class="s">&quot;selections&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Experimental Condition&quot;</span><span class="p">,</span>
+          <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;min count&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s">&quot;min input count&quot;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="s">&quot;min rsquared&quot;</span> <span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s">&quot;max barcode variation&quot;</span> <span class="p">:</span> <span class="mf">3.0</span>
+          <span class="p">},</span>
+          <span class="s">&quot;carryover correction&quot;</span> <span class="p">:</span> <span class="s">&quot;nonsense&quot;</span><span class="p">,</span>
+          <span class="s">&quot;libraries&quot;</span> <span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Input&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/input_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample 24hr&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/t24_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample 48hr&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/condition1/t48_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">&quot;label&quot;</span> <span class="p">:</span> <span class="s">&quot;drift control&quot;</span><span class="p">,</span>
+      <span class="s">&quot;control&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+      <span class="s">&quot;selections&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Drift Control&quot;</span><span class="p">,</span>
+          <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;min count&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s">&quot;min input count&quot;</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="s">&quot;min rsquared&quot;</span> <span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+            <span class="s">&quot;max barcode variation&quot;</span> <span class="p">:</span> <span class="mf">3.0</span>
+          <span class="p">},</span>
+          <span class="s">&quot;carryover correction&quot;</span> <span class="p">:</span> <span class="s">&quot;nonsense&quot;</span><span class="p">,</span>
+          <span class="s">&quot;libraries&quot;</span> <span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Control Input&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/control/input_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Control 24hr&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/control/t24_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Control 48hr&quot;</span><span class="p">,</span>
+              <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">48</span><span class="p">,</span>
+              <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+                <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+              <span class="p">},</span>
+              <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/control/t48_reads.fq&quot;</span><span class="p">,</span>
+                <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+              <span class="p">},</span>
+              <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+                <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+              <span class="p">},</span>
+              <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6. List of example configuration files</a><ul>
+<li><a class="reference internal" href="#basicseqlib">6.1. <tt class="docutils literal"><span class="pre">BasicSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="#overlapseqlib">6.2. <tt class="docutils literal"><span class="pre">OverlapSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="#barcodeseqlib">6.3. <tt class="docutils literal"><span class="pre">BarcodeSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="#barcodevariantseqlib">6.4. <tt class="docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a></li>
+<li><a class="reference internal" href="#selection">6.5. <tt class="docutils literal"><span class="pre">Selection</span></tt></a></li>
+<li><a class="reference internal" href="#experiment">6.6. <tt class="docutils literal"><span class="pre">Experiment</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="enrich_error.html"
+                        title="previous chapter">5.3. <tt class="docutils literal docutils literal"><span class="pre">enrich_error</span></tt> &#8212; Error handling for Enrich2</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="global.html"
+                        title="next chapter">&lt;no title&gt;</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/config_examples.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="global.html" title="&lt;no title&gt;"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="enrich_error.html" title="5.3. enrich_error — Error handling for Enrich2"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

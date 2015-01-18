@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. datacontainer — Abstract class for Enrich data &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="next" title="2. Sequencing library modules" href="seqlib_overview.html" />
+    <link rel="prev" title="Documentation for Enrich2" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="seqlib_overview.html" title="2. Sequencing library modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Documentation for Enrich2"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-datacontainer">
+<span id="datacontainer-abstract-class-for-enrich-data"></span><h1>1. <a class="reference internal" href="#module-datacontainer" title="datacontainer: Abstract class for Enrich data."><tt class="xref py py-mod docutils literal"><span class="pre">datacontainer</span></tt></a> &#8212; Abstract class for Enrich data<a class="headerlink" href="#module-datacontainer" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-datacontainer" title="datacontainer: Abstract class for Enrich data."><tt class="xref py py-mod docutils literal"><span class="pre">datacontainer</span></tt></a> module contains the class definition for the <a class="reference internal" href="#datacontainer.DataContainer" title="datacontainer.DataContainer"><tt class="xref py py-class docutils literal"><span class="pre">DataContainer</span></tt></a> abstract class, the shared base class for most classes in the <a class="reference external" href="index.html">Enrich2</a> project.</p>
+<div class="section" id="datacontainer-class">
+<h2>1.1. <a class="reference internal" href="#datacontainer.DataContainer" title="datacontainer.DataContainer"><tt class="xref py py-class docutils literal"><span class="pre">DataContainer</span></tt></a> class<a class="headerlink" href="#datacontainer-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="datacontainer.DataContainer">
+<em class="property">class </em><tt class="descclassname">datacontainer.</tt><tt class="descname">DataContainer</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract class for all data-containing classes 
+(<a class="reference internal" href="seqlib.html#seqlib.seqlib.SeqLib" title="seqlib.seqlib.SeqLib"><tt class="xref py py-class docutils literal"><span class="pre">seqlib.seqlib.SeqLib</span></tt></a>, <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">selection.Selection</span></tt></a>, and 
+<a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">experiment.Experiment</span></tt></a>). Creating a 
+<a class="reference internal" href="#datacontainer.DataContainer" title="datacontainer.DataContainer"><tt class="xref py py-class docutils literal"><span class="pre">datacontainer.DataContainer</span></tt></a>  requires a valid <em>config</em> object, 
+usually from a <tt class="docutils literal"><span class="pre">.json</span></tt> configuration file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Example configuration files can be found in the documentation     for derived classes.</p>
+</div>
+<p>Log file messages for filtered reads are defined here in the 
+<tt class="docutils literal"><span class="pre">_filter_messages</span></tt> dictionary. New read filtering options must have an 
+associated log file output message added to the dictionary.</p>
+<div class="highlight-python"><div class="highlight"><pre>    # When adding new messages, update the documentation line numbers also!
+    _filter_messages = {
+            # SeqLib messages
+            &#39;remove unresolvable&#39; : &quot;unresolvable mismatch&quot;,
+            &#39;min quality&#39; : &quot;single-base quality&quot;,
+            &#39;avg quality&#39; : &quot;average quality&quot;,
+            &#39;max mutations&#39; : &quot;excess mutations&quot;,
+            &#39;chastity&#39; : &quot;not chaste&quot;,
+            &#39;remove overlap indels&#39; : &quot;indel in read overlap&quot;,
+            &#39;merge failure&#39; : &quot;unable to merge reads&quot;,
+            # Selection messages
+            &#39;min count&#39; : &quot;not enough variant reads&quot;,
+            &#39;min input count&#39; : &quot;not enough variant reads in input&quot;,
+            &#39;min rsquared&#39; : &quot;low r-squared&quot;,
+            &#39;max barcode variation&#39; : &quot;high barcode CV&quot;
+            # Experiment messages
+</pre></div>
+</div>
+<dl class="method">
+<dt id="datacontainer.DataContainer.calculate">
+<tt class="descname">calculate</tt><big>(</big><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure virtual method that defines how the data are calculated.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.dump_data">
+<tt class="descname">dump_data</tt><big>(</big><em>keys=None</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.dump_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.13.1)"><tt class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></tt></a> objects as tab-separated files and 
+set the data to <tt class="docutils literal"><span class="pre">None</span></tt> to save memory. The 
+file names are stored for use by <a class="reference internal" href="#datacontainer.DataContainer.restore_data" title="datacontainer.DataContainer.restore_data"><tt class="xref py py-meth docutils literal"><span class="pre">restore_data()</span></tt></a>.</p>
+<p>The optional <em>keys</em> parameter is a list of types of data to be 
+dumped (variant, barcode, etc.). By default, all data are dumped.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.make_plots">
+<tt class="descname">make_plots</tt><big>(</big><em>subdirectory=None</em>, <em>keys=None</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.make_plots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure virtual method for creating plots.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.restore_data">
+<tt class="descname">restore_data</tt><big>(</big><em>keys=None</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.restore_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the data from the <tt class="docutils literal"><span class="pre">.tsv</span></tt> files written by <a class="reference internal" href="#datacontainer.DataContainer.dump_data" title="datacontainer.DataContainer.dump_data"><tt class="xref py py-meth docutils literal"><span class="pre">dump_data()</span></tt></a>.</p>
+<p>The optional <em>keys</em> parameter is a list of types of data to be 
+restored (variant, barcode, etc.). By default, all data are restored.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.set_filters">
+<tt class="descname">set_filters</tt><big>(</big><em>config_filters</em>, <em>default_filters</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.set_filters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the filtering options using the values from the <em>config_filters</em> 
+dictionary and <em>default_filters</em> dictionary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To help prevent user error, <em>config_filters</em> must be a         subset of <em>default_filters</em>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.set_output_base">
+<tt class="descname">set_output_base</tt><big>(</big><em>dirname</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.set_output_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the object&#8217;s base output directory (used for 
+<a class="reference internal" href="#datacontainer.DataContainer.dump_data" title="datacontainer.DataContainer.dump_data"><tt class="xref py py-meth docutils literal"><span class="pre">dump_data()</span></tt></a> and other class-specific methods) to <em>dirname</em> 
+and creates the directory if it doesn&#8217;t exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.sort_data">
+<tt class="descname">sort_data</tt><big>(</big><em>column</em>, <em>keys=None</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.sort_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.13.1)"><tt class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></tt></a> objects according the to the values in column <em>key</em>. The data are 
+sorted in descending order, with the <tt class="docutils literal"><span class="pre">NaN</span></tt> values at the end.</p>
+<p>The optional <em>keys</em> parameter is a list of types of data to be 
+sorted (variant, barcode, etc.). By default, all data are sorted.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.write_all">
+<tt class="descname">write_all</tt><big>(</big><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.write_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure virtual method for writing <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.13.1)"><tt class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></tt></a> contents to disk.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datacontainer.DataContainer.write_data">
+<tt class="descname">write_data</tt><big>(</big><em>subdirectory=None</em>, <em>keys=None</em><big>)</big><a class="headerlink" href="#datacontainer.DataContainer.write_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.13.1)"><tt class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></tt></a> objects as tab-separated files 
+with the same name as the object.</p>
+<p>The optional <em>keys</em> parameter is a list of types of data to be 
+saved (variant, barcode, etc.). By default, all data are saved.</p>
+<p>Returns a dictionary with <em>keys</em> as the keys and corresponding filenames for the <tt class="docutils literal"><span class="pre">.tsv</span></tt> files as the values. This dictionary is required by <a class="reference internal" href="#datacontainer.DataContainer.dump_data" title="datacontainer.DataContainer.dump_data"><tt class="xref py py-meth docutils literal"><span class="pre">dump_data()</span></tt></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="datacontainer-utility-functions">
+<h2>1.2. <a class="reference internal" href="#module-datacontainer" title="datacontainer: Abstract class for Enrich data."><tt class="xref py py-mod docutils literal"><span class="pre">datacontainer</span></tt></a> utility functions<a class="headerlink" href="#datacontainer-utility-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="datacontainer.fix_filename">
+<tt class="descclassname">datacontainer.</tt><tt class="descname">fix_filename</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#datacontainer.fix_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean up a filename <em>s</em> by removing invalid characters and converting 
+spaces to underscores. Returns the cleaned filename.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. <tt class="docutils literal"><span class="pre">datacontainer</span></tt> &#8212; Abstract class for Enrich data</a><ul>
+<li><a class="reference internal" href="#datacontainer-class">1.1. <tt class="docutils literal"><span class="pre">DataContainer</span></tt> class</a></li>
+<li><a class="reference internal" href="#datacontainer-utility-functions">1.2. <tt class="docutils literal"><span class="pre">datacontainer</span></tt> utility functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Documentation for Enrich2</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="seqlib_overview.html"
+                        title="next chapter">2. Sequencing library modules</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/datacontainer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="seqlib_overview.html" title="2. Sequencing library modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Documentation for Enrich2"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

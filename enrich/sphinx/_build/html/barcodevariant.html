@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.6. barcodevariant — Barcoded variant sequencing library &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="2. Sequencing library modules" href="seqlib_overview.html" />
+    <link rel="next" title="3. selection — Class for analyzing a selection timeseries" href="selection.html" />
+    <link rel="prev" title="2.5. barcode — Barcoded sequencing library" href="barcode.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="selection.html" title="3. selection — Class for analyzing a selection timeseries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="barcode.html" title="2.5. barcode — Barcoded sequencing library"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" accesskey="U">2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-seqlib.barcodevariant">
+<span id="barcodevariant-barcoded-variant-sequencing-library"></span><h1>2.6. <a class="reference internal" href="#module-seqlib.barcodevariant" title="seqlib.barcodevariant: Barcoded variant sequencing library."><tt class="xref py py-mod docutils literal"><span class="pre">barcodevariant</span></tt></a> &#8212; Barcoded variant sequencing library<a class="headerlink" href="#module-seqlib.barcodevariant" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-seqlib.barcodevariant" title="seqlib.barcodevariant: Barcoded variant sequencing library."><tt class="xref py py-mod docutils literal"><span class="pre">barcodevariant</span></tt></a> module contains the class definition for the <a class="reference internal" href="#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a>, which stores data from a sequencing library consisting of single-read barcode data and the variant associated with each barcode.</p>
+<div class="section" id="configuration-options">
+<h2>2.6.1. Configuration options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>&#8216;name&#8217;</strong>  - <em>required</em></dt>
+<dd>The name of this entity. This used for output directory names, and is included in every error message and log message. Names should be unique within a single analysis, but this is not enforced.</dd>
+<dt><strong>&#8216;output directory&#8217;</strong></dt>
+<dd><p class="first">Sets the base output directory for the analysis. Output files and directories will be created in subdirectories at this location. It will be created if it doesn&#8217;t exist.</p>
+<p>If desired, the output directory can be set for each entity separately. If no &#8216;output directory&#8217; is included in the config, the entity will use the parent&#8217;s setting.</p>
+<p class="last">This setting is required for the top level entity (usually an <a class="reference internal" href="experiment.html#experiment.Experiment" title="experiment.Experiment"><tt class="xref py py-class docutils literal"><span class="pre">Experiment</span></tt></a>) in each analysis.</p>
+</dd>
+<dt><strong>&#8216;timepoint&#8217;</strong> - <em>required</em></dt>
+<dd>Integer timepoint for this sequencing library. This can indicate time at which timepoints were taken (in hours, days, etc.) or the number of rounds of selection. The input library must be timepoint 0. Multiple sequencing libraries with the same timepoint will be combined by <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a>.</dd>
+<dt><strong>&#8216;report filtered reads&#8217;</strong></dt>
+<dd><p class="first">If this is <tt class="docutils literal"><span class="pre">True</span></tt>, reads that are filtered out will be written to the log file, along with a message about which filters they failed.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Enabling this option can generate very large log files, and it is recommended that it should only be used for troubleshooting subsets of the data.</p>
+</div>
+</dd>
+<dt><strong>&#8216;wild type&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the wild type sequence for this sequencing library.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;sequence&#8217;</strong> - <em>required</em></dt>
+<dd>The wild type DNA sequence. The sequence should be the same length as the sequences being compared to it (after any merging or read trimming).</dd>
+<dt><strong>&#8216;coding&#8217;</strong> - <em>required</em></dt>
+<dd>Set to <strong>True</strong> if the wild type sequence codes for protein. If this is <strong>True</strong>, amino acid changes will be computed for all variants. The wild type sequence must be in-frame.</dd>
+<dt><strong>&#8216;reference offset&#8217;</strong></dt>
+<dd>If this integer option is set, the value will be added to the DNA position (with respect to the wild type sequence) of each variant called. This is used to indicate the position of the mutagenized region within a longer sequence (mRNA, chromosome, etc.).</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;align variants&#8217;</strong></dt>
+<dd><p class="first">Set to <tt class="docutils literal"><span class="pre">True</span></tt> to use the <a class="reference internal" href="aligner.html#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> to align variants that have too many mutations or an unexpected length. Calls indels as well as single nucleotide changes.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Alignment is typically disabled for performance reasons unless the user is interested in indel mutations.</p>
+</div>
+</dd>
+<dt><strong>&#8216;fastq&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Information about the <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;forward&#8217;</strong> or <strong>&#8216;reverse&#8217;</strong> - <em>required</em></dt>
+<dd>Only one <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> file may be specified. If the file is &#8216;reverse&#8217;, all reads will be reverse-complemented before barcodes are counted.</dd>
+<dt><strong>&#8216;start&#8217;</strong></dt>
+<dd>Starting position of the barcode in the read (first base is position 1). Used for optional read trimming.</dd>
+<dt><strong>&#8216;length&#8217;</strong></dt>
+<dd>Number of bases in the barcode. Used for optional read trimming.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;barcodes&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">This config option must be present for the sequences to be treated as barcodes, even if it has no elements in it.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;map file&#8217;</strong></dt>
+<dd>Path to the <a class="reference internal" href="#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a> file mapping barcodes to variant sequences. If this option is not set, the <a class="reference internal" href="#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a> from the <a class="reference internal" href="selection.html#selection.Selection" title="selection.Selection"><tt class="xref py py-class docutils literal"><span class="pre">Selection</span></tt></a> will be used.</dd>
+<dt><strong>&#8216;min count&#8217;</strong></dt>
+<dd>Minimum count for a barcode to be included in the analysis. Barcodes with counts below this threshold will be output as low abundance barcodes, then discarded.</dd>
+</dl>
+</dd>
+<dt><strong>&#8216;filters&#8217;</strong> - <em>required</em></dt>
+<dd><p class="first">Filtering options for reads and variants.</p>
+<dl class="last docutils">
+<dt><strong>&#8216;min quality&#8217;</strong></dt>
+<dd>Minimum quality value for all bases in the read.</dd>
+<dt><strong>&#8216;avg quality&#8217;</strong></dt>
+<dd>Minimum average quality value for the read.</dd>
+<dt><strong>&#8216;chastity&#8217;</strong></dt>
+<dd>If <tt class="docutils literal"><span class="pre">True</span></tt>, require that the read has the chastity bit set in the <a class="reference external" href="http://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a> header.</dd>
+<dt><strong>&#8216;max mutations&#8217;</strong></dt>
+<dd>Maximum number of mutations allowed for the variant.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="barcodemap-class">
+<h2>2.6.2. <a class="reference internal" href="#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a> class<a class="headerlink" href="#barcodemap-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.barcodevariant.BarcodeMap">
+<em class="property">class </em><tt class="descclassname">seqlib.barcodevariant.</tt><tt class="descname">BarcodeMap</tt><big>(</big><em>mapfile</em><big>)</big><a class="headerlink" href="#seqlib.barcodevariant.BarcodeMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary-derived class for storing the relationship between barcodes 
+and variants. Requires the path to a <em>mapfile</em>, containing lines in the 
+format <tt class="docutils literal"><span class="pre">'barcode&lt;tab&gt;variant'</span></tt> for each barcode expected in the library. 
+This file can be plain text or compressed (<tt class="docutils literal"><span class="pre">.bz2</span></tt> or <tt class="docutils literal"><span class="pre">.gz</span></tt>).</p>
+<p>Barcodes must only contain the characters <tt class="docutils literal"><span class="pre">ACGT</span></tt> and variants must only 
+contain the characters <tt class="docutils literal"><span class="pre">ACGTN</span></tt> (lowercase characters are also accepted).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="barcodevariantseqlib-class">
+<h2>2.6.3. <a class="reference internal" href="#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a> class<a class="headerlink" href="#barcodevariantseqlib-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.barcodevariant.BarcodeVariantSeqLib">
+<em class="property">class </em><tt class="descclassname">seqlib.barcodevariant.</tt><tt class="descname">BarcodeVariantSeqLib</tt><big>(</big><em>config</em>, <em>barcode_map=None</em><big>)</big><a class="headerlink" href="#seqlib.barcodevariant.BarcodeVariantSeqLib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for counting variant data from barcoded sequencing libraries. 
+Creating a <a class="reference internal" href="#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a> requires a valid <em>config</em> 
+object with an <tt class="docutils literal"><span class="pre">'barcodes'</span></tt> entry and information about the wild type 
+sequence.</p>
+<p>Example config file for a <a class="reference internal" href="#seqlib.barcodevariant.BarcodeVariantSeqLib" title="seqlib.barcodevariant.BarcodeVariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sample Barcode Library&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timepoint&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s">&quot;wild type&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;sequence&quot;</span> <span class="p">:</span> <span class="s">&quot;CGACGCAAGGAGTAG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;coding&quot;</span> <span class="p">:</span> <span class="n">true</span>
+  <span class="p">},</span>
+  <span class="s">&quot;fastq&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;forward&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/FASTQ/sample_reads.fq&quot;</span><span class="p">,</span>
+    <span class="s">&quot;start&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&quot;length&quot;</span> <span class="p">:</span> <span class="mi">16</span>
+  <span class="p">},</span>
+  <span class="s">&quot;filters&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;min quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;avg quality&quot;</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s">&quot;chastity&quot;</span> <span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;max mutations&quot;</span> <span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="s">&quot;barcodes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;map file&quot;</span> <span class="p">:</span> <span class="s">&quot;/path/to/map/file/barcode_map.txt&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" href="_downloads/barcodevariant.json"><tt class="xref download docutils literal"><span class="pre">Download</span> <span class="pre">this</span> <span class="pre">JSON</span> <span class="pre">file</span></tt></a></p>
+<p>The <tt class="docutils literal"><span class="pre">barcode_map</span></tt> keyword argument can be used to pass an existing 
+<a class="reference internal" href="#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a>, but only if the 
+<tt class="docutils literal"><span class="pre">&quot;map</span> <span class="pre">file&quot;</span></tt> entry is absent from <em>config</em>.</p>
+<dl class="method">
+<dt id="seqlib.barcodevariant.BarcodeVariantSeqLib.calculate">
+<tt class="descname">calculate</tt><big>(</big><big>)</big><a class="headerlink" href="#seqlib.barcodevariant.BarcodeVariantSeqLib.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the barcodes using <tt class="xref py py-meth docutils literal"><span class="pre">BarcodeSeqLib.count()</span></tt> and combines them into 
+variant counts using the <a class="reference internal" href="#seqlib.barcodevariant.BarcodeMap" title="seqlib.barcodevariant.BarcodeMap"><tt class="xref py py-class docutils literal"><span class="pre">BarcodeMap</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="seqlib.barcodevariant.BarcodeVariantSeqLib.report_filtered_variant">
+<tt class="descname">report_filtered_variant</tt><big>(</big><em>variant</em>, <em>count</em><big>)</big><a class="headerlink" href="#seqlib.barcodevariant.BarcodeVariantSeqLib.report_filtered_variant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs a summary of the filtered variant to <em>handle</em>. Internal filter 
+names are converted to messages using the <tt class="docutils literal"><span class="pre">DataContainer._filter_messages</span></tt> 
+dictionary. Related to <tt class="xref py py-meth docutils literal"><span class="pre">SeqLib.report_filtered()</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2.6. <tt class="docutils literal"><span class="pre">barcodevariant</span></tt> &#8212; Barcoded variant sequencing library</a><ul>
+<li><a class="reference internal" href="#configuration-options">2.6.1. Configuration options</a></li>
+<li><a class="reference internal" href="#barcodemap-class">2.6.2. <tt class="docutils literal"><span class="pre">BarcodeMap</span></tt> class</a></li>
+<li><a class="reference internal" href="#barcodevariantseqlib-class">2.6.3. <tt class="docutils literal"><span class="pre">BarcodeVariantSeqLib</span></tt> class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="barcode.html"
+                        title="previous chapter">2.5. <tt class="docutils literal docutils literal docutils literal"><span class="pre">barcode</span></tt> &#8212; Barcoded sequencing library</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="selection.html"
+                        title="next chapter">3. <tt class="docutils literal"><span class="pre">selection</span></tt> &#8212; Class for analyzing a selection timeseries</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/barcodevariant.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="selection.html" title="3. selection — Class for analyzing a selection timeseries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="barcode.html" title="2.5. barcode — Barcoded sequencing library"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="seqlib_overview.html" >2. Sequencing library modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.2. aligner — Needleman-Wunsch alignment for variants &mdash; Enrich2 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Enrich2 2.0 documentation" href="index.html" />
+    <link rel="up" title="5. Other modules" href="other_overview.html" />
+    <link rel="next" title="5.3. enrich_error — Error handling for Enrich2" href="enrich_error.html" />
+    <link rel="prev" title="5.1. fqread — Manipulation of FASTQ records" href="fqread.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="enrich_error.html" title="5.3. enrich_error — Error handling for Enrich2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fqread.html" title="5.1. fqread — Manipulation of FASTQ records"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="other_overview.html" accesskey="U">5. Other modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-seqlib.aligner">
+<span id="aligner-needleman-wunsch-alignment-for-variants"></span><h1>5.2. <a class="reference internal" href="#module-seqlib.aligner" title="seqlib.aligner: Needleman-Wunsch alignment for variants."><tt class="xref py py-mod docutils literal"><span class="pre">aligner</span></tt></a> &#8212; Needleman-Wunsch alignment for variants<a class="headerlink" href="#module-seqlib.aligner" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-seqlib.aligner" title="seqlib.aligner: Needleman-Wunsch alignment for variants."><tt class="xref py py-mod docutils literal"><span class="pre">aligner</span></tt></a> module contains a <a class="reference external" href="http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">Needleman-Wunsch</a> aligner
+used by <a class="reference internal" href="variant.html#seqlib.variant.VariantSeqLib" title="seqlib.variant.VariantSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">VariantSeqLib</span></tt></a> objects to align variants
+to the wild type sequence.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This module uses Python&#8217;s <tt class="xref py py-class docutils literal"><span class="pre">Exception</span></tt> instead of <a class="reference internal" href="enrich_error.html#enrich_error.EnrichError" title="enrich_error.EnrichError"><tt class="xref py py-class docutils literal"><span class="pre">EnrichError</span></tt></a> for portability.</p>
+</div>
+<div class="section" id="aligner-class">
+<h2>5.2.1. <a class="reference internal" href="#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> class<a class="headerlink" href="#aligner-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="seqlib.aligner.Aligner">
+<em class="property">class </em><tt class="descclassname">seqlib.aligner.</tt><tt class="descname">Aligner</tt><big>(</big><em>similarity=_simple_similarity</em><big>)</big><a class="headerlink" href="#seqlib.aligner.Aligner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for performing <a class="reference external" href="http://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">Needleman-Wunsch</a> local alignment.</p>
+<p>The <a class="reference internal" href="#seqlib.aligner.Aligner" title="seqlib.aligner.Aligner"><tt class="xref py py-class docutils literal"><span class="pre">Aligner</span></tt></a> requires a scoring matrix when 
+created. By default, the following matrix is used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">_simple_similarity</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;G&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;T&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;N&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;X&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="s">&#39;gap&#39;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The format is a nested dictionary, with a special <tt class="docutils literal"><span class="pre">'gap'</span></tt> entry for the 
+gap penalty (this value is used for both gap opening and gap extension). 
+The <tt class="docutils literal"><span class="pre">'X'</span></tt> nucleotide is a special case for unresolvable mismatches in 
+<a class="reference internal" href="overlap.html#seqlib.overlap.OverlapSeqLib" title="seqlib.overlap.OverlapSeqLib"><tt class="xref py py-class docutils literal"><span class="pre">OverlapSeqLib</span></tt></a> variant data.</p>
+<dl class="method">
+<dt id="seqlib.aligner.Aligner.align">
+<tt class="descname">align</tt><big>(</big><em>seq1</em>, <em>seq2</em><big>)</big><a class="headerlink" href="#seqlib.aligner.Aligner.align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aligns the two sequences, <em>seq1</em> and <em>seq2</em> and returns a list of 
+tuples describing the differences between the sequences.</p>
+<p>The tuple format is <tt class="docutils literal"><span class="pre">(i,</span> <span class="pre">j,</span> <span class="pre">type,</span> <span class="pre">length)</span></tt>, where <tt class="docutils literal"><span class="pre">i</span></tt> and <tt class="docutils literal"><span class="pre">j</span></tt> 
+are the positions in <em>seq1</em> and <em>seq2</em>, respectively, and type is one 
+of <tt class="docutils literal"><span class="pre">&quot;match&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;mismatch&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;insertion&quot;</span></tt>, or <tt class="docutils literal"><span class="pre">&quot;deletion&quot;</span></tt>. 
+For indels, the <tt class="docutils literal"><span class="pre">length</span></tt> value is the number of bases inserted or 
+deleted with respect to <em>seq1</em> starting at <tt class="docutils literal"><span class="pre">i</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5.2. <tt class="docutils literal"><span class="pre">aligner</span></tt> &#8212; Needleman-Wunsch alignment for variants</a><ul>
+<li><a class="reference internal" href="#aligner-class">5.2.1. <tt class="docutils literal"><span class="pre">Aligner</span></tt> class</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fqread.html"
+                        title="previous chapter">5.1. <tt class="docutils literal"><span class="pre">fqread</span></tt> &#8212; Manipulation of FASTQ records</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="enrich_error.html"
+                        title="next chapter">5.3. <tt class="docutils literal"><span class="pre">enrich_error</span></tt> &#8212; Error handling for Enrich2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/aligner.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="enrich_error.html" title="5.3. enrich_error — Error handling for Enrich2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fqread.html" title="5.1. fqread — Manipulation of FASTQ records"
+             >previous</a> |</li>
+        <li><a href="index.html">Enrich2 2.0 documentation</a> &raquo;</li>
+          <li><a href="other_overview.html" >5. Other modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Alan F Rubin and Douglas M Fowler.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
