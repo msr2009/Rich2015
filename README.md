@@ -12,6 +12,14 @@ Included in this repository are:
 
 `enumerate_sequences.py` -- this script enumerates all single mutations of a given sequence, and was used to create the <em>in silico</em> sequences used for cryptic transcription factor binding site analysis (Figure X).
 
+`6mut_frequencies.py` -- this script genotypes paired-end reads from combinatorial mutations experiments. The output of this script is then analyzed using a simple bash workflow:
+	
+	sort OUTPUT | uniq -c | awk '{OF="\t"}{print $2, $1}'
+
+`6mut_analysis.R` -- 
+
+`fastq_tools.py` -- 
+
 Raw reads used in the analyses in this manuscript can be found at SRA NNN.
 
 [1] -- Alan F Rubin, Terry Speed, and Douglas M Fowler. "." JOURNAL (2015?)
