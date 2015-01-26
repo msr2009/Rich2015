@@ -28,4 +28,4 @@ which creates files to use with 6mut_analysis.R.
 
 Raw reads used in the analyses in this manuscript can be found at SRA NNN.
 
-[1] -- Alan F Rubin, Terry Speed, and Douglas M Fowler. "." JOURNAL (2015?)
+[1] -- Alan F Rubin, Terry Speed, and Douglas M Fowler. in prep.
