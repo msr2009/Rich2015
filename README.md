@@ -10,8 +10,6 @@ Included in this repository are:
 
 `plot_heatmap_enrich2.py` -- this script takes output of enrich's barcode frequency analysis and creates the plots found in the Figure 2.
 
-``
-
 `6mut_frequencies.py` -- this script genotypes paired-end reads from combinatorial mutations experiments. The output of this script is then analyzed using a simple bash workflow:
 	
 	sort OUTPUT | uniq -c | awk '{OF="\t"}{print $2, $1}'
