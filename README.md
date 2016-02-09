@@ -1,5 +1,3 @@
-# Rich2016
-
 These are scripts from 
 
 <b>Matthew S Rich, Celia Payen, Alan F Rubin, Giang Ong, Monica R. Sanchez, Nozomu Yachie, Maitreya J Dunham, and Stanley Fields. "The effects of cis-regulatory mutations in the SUL1 gene on yeast sulfate-limited fitness" Genetics (submitted)</b>
