@@ -2,7 +2,7 @@
 
 These are scripts from 
 
-<b>Matthew S Rich, Celia Payen, Alan F Rubin, Giang Ong, Maitreya J Dunham, and Stanley Fields. "The effects of cis-regulatory mutations in the SUL1 gene on yeast sulfate-limited fitness" JOURNAL (2015?)</b>
+<b>Matthew S Rich, Celia Payen, Alan F Rubin, Giang Ong, Monica R. Sanchez, Nozomu Yachie, Maitreya J Dunham, and Stanley Fields. "The effects of cis-regulatory mutations in the SUL1 gene on yeast sulfate-limited fitness" Genetics (submitted)</b>
 
 Included in this repository are:
 
@@ -26,6 +26,8 @@ which creates files to use with 6mut_analysis.R.
 
 `fastq_tools.py` -- A small library of Python utilities to work with FASTQ files.
 
-Raw reads used in the analyses in this manuscript can be found at SRA NNN.
+`RICH2016_FILE-S2.bz2` -- A bzipped file containing all raw data files (tab-delimited tables of data for each promoter variant; the output of Enrich)
+
+Raw reads used in the analyses in this manuscript can be found at SRA Bioproject ID PRJNA273419.
 
 [1] -- Alan F Rubin, Terry Speed, and Douglas M Fowler. in prep.
